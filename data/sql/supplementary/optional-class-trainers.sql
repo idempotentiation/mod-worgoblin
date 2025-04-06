@@ -1,5 +1,5 @@
 DELETE FROM `creature_template` WHERE `entry` IN (35869, 35872);
-DELETE FROM `creature_template` WHERE `CreatureID` IN (35869, 35872);
+DELETE FROM `creature_template_model` WHERE `CreatureID` IN (35869, 35872);
 DELETE FROM `npc_trainer` WHERE `ID` IN (35869, 35872);
 
 -- Worgen Trainers
