@@ -31,3 +31,26 @@ INSERT INTO `skillraceclassinfo_dbc` (`ID`, `SkillID`, `RaceMask`, `ClassMask`, 
 (899, 165, 4095, 1535, 160, 0, 41, 0),
 (971, 789, 2048, 1469, 1170, 0, 0, 0),
 (972, 790, 256, 509, 1170, 0, 0, 0);
+
+-- Fix skill race/class validation errors for Goblin and Worgen characters
+-- This resolves worldserver.exe console errors about invalid skills for race/class combinations
+
+-- Add missing weapon skill entries for skillraceclassinfo_dbc table
+-- Based on the existing playercreateinfo_skills.sql patterns:
+-- RaceMask 4095 = all races, ClassMask values match existing patterns
+
+INSERT INTO `skillraceclassinfo_dbc` (`ID`, `SkillID`, `RaceMask`, `ClassMask`, `Flags`, `MinLevel`, `SkillTierID`, `SkillCostIndex`) VALUES
+-- Skill 43 (SKILL_SWORDS) - matches pattern from playercreateinfo_skills (0,39,43,0)
+(1000, 43, 4095, 39, 128, 0, 0, 0), -- Allow swords for all races, class mask 39 (Warrior,Paladin,Hunter,Death Knight)
+
+-- Skill 44 (SKILL_AXES) - matches pattern from playercreateinfo_skills (0,37,44,0)
+(1001, 44, 4095, 37, 128, 0, 0, 0), -- Allow axes for all races, class mask 37 (Warrior,Hunter,Death Knight)
+
+-- Skill 54 (SKILL_MACES) - matches pattern from playercreateinfo_skills (0,1107,54,0)
+(1002, 54, 4095, 1107, 128, 0, 0, 0), -- Allow maces for all races, class mask 1107 (Warrior,Paladin,Rogue,Shaman,Druid)
+
+-- Skill 172 (SKILL_2H_AXES) - matches pattern from playercreateinfo_skills (0,37,172,0)
+(1003, 172, 4095, 37, 128, 0, 0, 0), -- Allow 2H axes for all races, class mask 37 (Warrior,Hunter,Death Knight)
+
+-- Skill 173 (SKILL_DAGGERS) - matches pattern from playercreateinfo_skills (735,1293,173,0)
+(1004, 173, 4095, 1293, 128, 0, 0, 0); -- Allow daggers for all races, class mask 1293 (Warrior,Hunter,Rogue,Warlock,Druid) 
