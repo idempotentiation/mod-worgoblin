@@ -1,5 +1,6 @@
+DELETE FROM `player_totem_model` WHERE `TotemID` IN (1, 2, 3, 4) AND `RaceID` IN (9, 12);
 -- Add totem models for races that don't currently have shaman class
-INSERT IGNORE  INTO `player_totem_model` (`TotemID`, `RaceID`, `ModelID`) VALUES
+INSERT INTO `player_totem_model` (`TotemID`, `RaceID`, `ModelID`) VALUES
 -- worgen (Race ID 12) - Use nature-themed totems
 (1, 12, 30762), -- Fire (borrowing from Troll style for nature theme)
 (2, 12, 30761), -- Earth (borrowing from Troll style for nature theme)

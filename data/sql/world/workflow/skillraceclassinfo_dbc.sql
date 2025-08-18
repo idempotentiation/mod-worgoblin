@@ -1,4 +1,4 @@
-INSERT INTO `skillraceclassinfo_dbc` (`ID`, `SkillID`, `RaceMask`, `ClassMask`, `Flags`, `MinLevel`, `SkillTierID`, `SkillCostIndex`) VALUES
+INSERT IGNORE INTO `skillraceclassinfo_dbc` (`ID`, `SkillID`, `RaceMask`, `ClassMask`, `Flags`, `MinLevel`, `SkillTierID`, `SkillCostIndex`) VALUES
 (21, 293, 4095, 3, 128, 40, 0, 0), -- redo this
 (27, 356, 4095, 1535, 128, 0, 23, 0),
 (28, 182, 4095, 1535, 160, 0, 2, 0),
@@ -39,7 +39,7 @@ INSERT INTO `skillraceclassinfo_dbc` (`ID`, `SkillID`, `RaceMask`, `ClassMask`, 
 -- Based on the existing playercreateinfo_skills.sql patterns:
 -- RaceMask 4095 = all races, ClassMask values match existing patterns
 
-INSERT INTO `skillraceclassinfo_dbc` (`ID`, `SkillID`, `RaceMask`, `ClassMask`, `Flags`, `MinLevel`, `SkillTierID`, `SkillCostIndex`) VALUES
+INSERT IGNORE INTO `skillraceclassinfo_dbc` (`ID`, `SkillID`, `RaceMask`, `ClassMask`, `Flags`, `MinLevel`, `SkillTierID`, `SkillCostIndex`) VALUES
 -- Skill 43 (SKILL_SWORDS) - matches pattern from playercreateinfo_skills (0,39,43,0)
 (1000, 43, 4095, 39, 128, 0, 0, 0), -- Allow swords for all races, class mask 39 (Warrior,Paladin,Hunter,Death Knight)
 
