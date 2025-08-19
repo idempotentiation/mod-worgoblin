@@ -12,25 +12,45 @@ This module makes *heavy* use of client patching and modification. Because of th
 
 ## How to Install
 
-As of right now, the hooks for allowing custom races are not present in AzerothCore. Because of this, you'll have to manually apply the change required to your AzerothCore source.
-
 ### 1) Download the module
 
 I recommend using git to download the module into your AzerothCore/modules directory with the following command:
 
-`git clone https://github.com/idempotentiation/mod-worgoblin.git`
+```
+git clone https://github.com/idempotentiation/mod-worgoblin.git
+```
 
 If you choose to manually download the repo, make sure that you delete the -master suffix after extracting the folder to your AzerothCore modules directory.
 
-### 2) Apply the [worgoblin.patch](https://github.com/benjymansy123/mod-worgoblin/blob/master/worgoblin.patch) to your AzerothCore source directory
+### 2) Apply the [worgoblin.patch](https://github.com/idempotentiation/mod-worgoblin/blob/master/worgoblin.patch) to your AzerothCore source directory
 
-This can be accomplished in a couple different ways. If you have git installed, you use the following command from the root of your AzerothCore directory:
+As of right now, the hooks for allowing custom races are not present in AzerothCore. Because of this, you'll have to manually apply the change required to your AzerothCore source.
 
-`git apply --ignore-space-change --ignore-whitespace modules/mod-worgoblin/worgoblin.patch`
+I recommend applying the patch with git, as it is less error-prone and will make future AzerothCore updates easier. You can apply the patch with the following commands:
+
+```
+git apply --ignore-space-change --ignore-whitespace modules/mod-worgoblin/worgoblin.patch
+git add src/server/game/Entities/Player/Player.cpp src/server/game/Handlers/CharacterHandler.cpp src/server/shared/SharedDefines.h
+git commit -m "Add worgoblin patch"
+```
 
 Alternatively, you can do it manually through a text editor of your choice by changing the lines required where a "-" indicates the original line and a "+" indicates the change necessary. The specific lines can be found after the @@ before each change, where it states the line number. There are a total of seven lines to change and one line to add.
 
-### 3) Replace the DBC files in your AzerothCore Data directory with the ones provided in [DBFilesClient](https://github.com/heyitsbench/mod-worgoblin/tree/master/data/patch/DBFilesClient)
+### 2.5) Optional: Playerbots compatibility patch
+
+The Playerbots module uses the player's race to determine whether the player is Alliance or not. Because worgen are not present in the list of Alliance races, Alliance bots will automatically decline any group invitations received by them. This patch adds worgen to the list of Alliance races and allows them to correctly group with bots. Note that goblins don't need any special handling, as any race not in the enumerated list of Alliance races is treated as Horde by Playerbots.
+
+To apply the patch, copy [playerbots.patch](https://github.com/idempotentiation/mod-worgoblin/blob/master/playerbots.patch) to the root of your Playerbots directory and run the following commands from there:
+
+```
+git apply --ignore-space-change --ignore-whitespace playerbots.patch
+git add src/PlayerbotAI.cpp
+git commit -m "Add worgoblin patch"
+```
+
+If you didn't install the Playerbots module via git, you can manually add `RACE_WORGEN` to the list of races recognized by the `IsAlliance` function in `mod-playerbots/src/PlayerbotAI.cpp`.
+
+### 3) Replace the DBC files in your AzerothCore Data directory with the ones provided in [DBFilesClient](https://github.com/idempotentiation/mod-worgoblin/tree/master/data/patch/DBFilesClient)
 
 Copy the contents of the DBFilesClient folder (mod-worgoblin/data/patch/DBFilesClient) to your AzerothCore Data/dbc directory (defined by DataDir in worldserver.conf). I recommend backing up your dbc folder before overwriting these files.
 
