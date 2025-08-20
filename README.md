@@ -36,7 +36,9 @@ git commit -m "Add worgoblin patch"
 
 Alternatively, you can do it manually through a text editor of your choice by changing the lines required where a "-" indicates the original line and a "+" indicates the change necessary. The specific lines can be found after the @@ before each change, where it states the line number. There are a total of seven lines to change and one line to add.
 
-### 2.5) Optional: Playerbots compatibility patch
+### 2.5) Optional: compatibility patches
+
+#### Playerbots
 
 The Playerbots module uses the player's race to determine whether the player is Alliance or not. Because worgen are not present in the list of Alliance races, Alliance bots will automatically decline any group invitations received by them. This patch adds worgen to the list of Alliance races and allows them to correctly group with bots. Note that goblins don't need any special handling, as any race not in the enumerated list of Alliance races is treated as Horde by Playerbots.
 
@@ -49,6 +51,20 @@ git commit -m "Add worgoblin patch"
 ```
 
 If you didn't install the Playerbots module via git, you can manually add `RACE_WORGEN` to the list of races recognized by the `IsAlliance` function in `mod-playerbots/src/PlayerbotAI.cpp`.
+
+#### Individual Progression
+
+The individual progression module reverts starting weapon skills to their vanilla behavior, meaning that your starting weapon skills are more dependent on your race/class combination. This has the side effect of causing many newly created worgen/goblin classes to be unable to equip their starting weapons. Additionally, the module removes many spells from trainers and reintroduces the quests that were originally required to learn them. Notably, it removes Summon Imp from warlock trainers. Because there are no warlock quests in Teldrassil, this leaves worgen warlocks without any feasible way of learning how to summon their imp. This patch fixes the issues with starting weapon skills, as well as teaches all newly created worgen warlocks the Summon Imp spell until a custom quest can be added. After you apply the patch, you must rerun the patched SQL files on your world database for the changes to take effect. The files changed are `class_trainers.sql`, `starting_skillbars.sql`, and `weapon_skills.sql`, which can all found in `mod-individual-progression/sql/world/base`.
+
+To apply the patch, copy [individual-progression.patch](https://github.com/idempotentiation/mod-worgoblin/blob/master/individual-progression.patch) to the root of your individual irogression directory and run the following commands from there:
+
+```
+git apply --ignore-space-change --ignore-whitespace individual-progression.patch
+git add sql/world/base/class_trainers.sql sql/world/base/starting_skillbars.sql sql/world/base/weapon_skills.sql
+git commit -m "Add worgoblin patch"
+```
+
+Note that you must set `PlayerStart.CustomSpells = 1` in your `worldserver.conf` for the Summon Imp changes to function.
 
 ### 3) Replace the DBC files in your AzerothCore Data directory with the ones provided in [DBFilesClient](https://github.com/idempotentiation/mod-worgoblin/tree/master/data/patch/DBFilesClient)
 
