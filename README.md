@@ -51,7 +51,7 @@ git commit -m "Add worgoblin patch"
 mysql -u acore -pacore acore_world -e "SOURCE data/sql/world/world_playerbots_rpg_races.sql;"
 ```
 
-Don't forget to make sure your acore_world database is initialized before running the query.
+Don't forget to initialize your acore_world database is initialized before running the query.
 
 #### Individual Progression
 
@@ -68,7 +68,7 @@ git commit -m "Add worgoblin patch"
 mysql -u acore -pacore acore_world -e "SOURCE sql/world/base/class_trainers.sqll; SOURCE sql/world/base/starting_skillbars.sql; SOURCE sql/world/base/weapon_skills.sql;"
 ```
 
-Note that you must set `PlayerStart.CustomSpells = 1` in your `worldserver.conf` for the Summon Imp changes to function. Don't forget to make sure your acore_world database is initialized before running the queries.
+Note that you must set `PlayerStart.CustomSpells = 1` in your `worldserver.conf` for the Summon Imp changes to function. Don't forget to initialize your acore_world database is initialized before running the queries.
 
 ### 3) Replace the DBC files in your AzerothCore Data directory with the ones provided in [DBFilesClient](https://github.com/idempotentiation/mod-worgoblin/tree/master/data/patch/DBFilesClient)
 
