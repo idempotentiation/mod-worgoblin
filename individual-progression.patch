@@ -1,5 +1,5 @@
 diff --git a/sql/world/base/class_trainers.sql b/sql/world/base/class_trainers.sql
-index b895ab1..6385079 100644
+index b895ab1..cd7df9e 100644
 --- a/sql/world/base/class_trainers.sql
 +++ b/sql/world/base/class_trainers.sql
 @@ -175,3 +175,9 @@ INSERT INTO `creature_loot_template` (`Entry`, `Item`, `Chance`, `GroupId`, `Min
@@ -11,7 +11,7 @@ index b895ab1..6385079 100644
 +/*Note that this requires you to set PlayerStart.CustomSpells = 1 in your worldserver.conf file to take effect*/
 +DELETE FROM `playercreateinfo_spell_custom` WHERE `Spell` IN (688);
 +INSERT INTO `playercreateinfo_spell_custom` (`racemask`, `classmask`, `Spell`, `Note`) VALUES
-+(2048, 256, 688, 'Summon Imp (Worgen temp fix)'),
++(2048, 256, 688, 'Summon Imp (Worgen temp fix)')
 diff --git a/sql/world/base/starting_skillbars.sql b/sql/world/base/starting_skillbars.sql
 index 83eb62b..f067574 100644
 --- a/sql/world/base/starting_skillbars.sql
