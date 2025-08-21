@@ -30,7 +30,7 @@ I recommend applying the patch with git, as it is less error-prone and will make
 
 ```
 git apply --ignore-space-change --ignore-whitespace modules/mod-worgoblin/worgoblin.patch
-git add src/server/game/Entities/Player/Player.cpp src/server/game/Handlers/CharacterHandler.cpp src/server/shared/SharedDefines.h
+git add .
 git commit -m "Add worgoblin patch"
 ```
 
@@ -40,29 +40,27 @@ Alternatively, you can do it manually through a text editor of your choice by ch
 
 #### Playerbots
 
-The Playerbots module uses the player's race to determine whether the player is Alliance or not. Because worgen are not present in the list of Alliance races, Alliance bots will automatically decline any group invitations received by them. This patch adds worgen to the list of Alliance races and allows them to correctly group with bots. Note that goblins don't need any special handling, as any race not in the enumerated list of Alliance races is treated as Horde by Playerbots.
+This patch fixes the problem of bots failing to recognize worgen as an Alliance race (goblins work correctly without the patch) and allows playerbots to spawn as worgen and goblins. You'll have to run the modified `world_playerbots_rpg_races.sql` found in your Playerbots `data/sql/world` directory for changes to take effect. If you only want to fix worgen faction behavior, use the [playerbots-lite patch](https://github.com/idempotentiation/mod-worgoblin/blob/master/playerbots-lite.patch) (you don't need to run any SQL queries if you use this one).
 
 To apply the patch, copy [playerbots.patch](https://github.com/idempotentiation/mod-worgoblin/blob/master/playerbots.patch) to the root of your Playerbots directory and run the following commands from there:
 
 ```
 git apply --ignore-space-change --ignore-whitespace playerbots.patch
-git add src/PlayerbotAI.cpp
+git add .
 git commit -m "Add worgoblin patch"
 ```
 
-If you didn't install the Playerbots module via git, you can manually add `RACE_WORGEN` to the list of races recognized by the `IsAlliance` function in `mod-playerbots/src/PlayerbotAI.cpp`.
-
 #### Individual Progression
 
-The individual progression module reverts starting weapon skills to their vanilla behavior, meaning that your starting weapon skills are more dependent on your race/class combination. This has the side effect of causing many newly created worgen/goblin classes to be unable to equip their starting weapons. Additionally, the module removes many spells from trainers and reintroduces the quests that were originally required to learn them. Notably, it removes Summon Imp from warlock trainers. Because there are no warlock quests in Teldrassil, this leaves worgen warlocks without any feasible way of learning how to summon their imp.
+The individual progression module modifies starting weapon skills, which has the side effect of causing certain classes for worgen and goblins to be unable to use their starting equipment. Additionally, it removes many spells from trainers and reintroduces the quests that were originally required to learn them. Notably, it removes Summon Imp from warlock trainers. Because there are no warlock quests in Teldrassil, this leaves worgen warlocks without any feasible way of learning how to summon their imp.
 
-This patch fixes the issues with starting weapon skills, as well as teaches all newly created worgen warlocks the Summon Imp spell until a custom quest can be added. After you apply the patch, you must rerun the patched SQL files on your world database for the changes to take effect. The files changed are `class_trainers.sql`, `starting_skillbars.sql`, and `weapon_skills.sql`, which can all found in `mod-individual-progression/sql/world/base`.
+This patch fixes the issues with starting weapon skills, as well as teaches all newly created worgen warlocks the Summon Imp spell until a custom quest can be added. After you apply the patch, you must run the patched SQL files on your world database for the changes to take effect. The files changed are `class_trainers.sql`, `starting_skillbars.sql`, and `weapon_skills.sql`, which can all found in `mod-individual-progression/sql/world/base`.
 
 To apply the patch, copy [individual-progression.patch](https://github.com/idempotentiation/mod-worgoblin/blob/master/individual-progression.patch) to the root of your individual progression directory and run the following commands from there:
 
 ```
 git apply --ignore-space-change --ignore-whitespace individual-progression.patch
-git add sql/world/base/class_trainers.sql sql/world/base/starting_skillbars.sql sql/world/base/weapon_skills.sql
+git add .
 git commit -m "Add worgoblin patch"
 ```
 
