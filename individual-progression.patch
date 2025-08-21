@@ -1,5 +1,5 @@
 diff --git a/sql/world/base/class_trainers.sql b/sql/world/base/class_trainers.sql
-index b895ab1..4d363f2 100644
+index b895ab1..6385079 100644
 --- a/sql/world/base/class_trainers.sql
 +++ b/sql/world/base/class_trainers.sql
 @@ -175,3 +175,9 @@ INSERT INTO `creature_loot_template` (`Entry`, `Item`, `Chance`, `GroupId`, `Min
@@ -12,9 +12,8 @@ index b895ab1..4d363f2 100644
 +DELETE FROM `playercreateinfo_spell_custom` WHERE `Spell` IN (688);
 +INSERT INTO `playercreateinfo_spell_custom` (`racemask`, `classmask`, `Spell`, `Note`) VALUES
 +(2048, 256, 688, 'Summon Imp (Worgen temp fix)'),
-\ No newline at end of file
 diff --git a/sql/world/base/starting_skillbars.sql b/sql/world/base/starting_skillbars.sql
-index 83eb62b..b77802a 100644
+index 83eb62b..f067574 100644
 --- a/sql/world/base/starting_skillbars.sql
 +++ b/sql/world/base/starting_skillbars.sql
 @@ -288,3 +288,103 @@ INSERT INTO `playercreateinfo_action` (`race`, `class`, `button`, `action`, `typ
@@ -121,9 +120,8 @@ index 83eb62b..b77802a 100644
 +-- (12, 11, 120, 68992), Darkflight Druid
 +-- (12, 11, 120, 68996), Two Forms Druid
 +-- (12, 11, 120, 87840) Running Wild Druid
-\ No newline at end of file
 diff --git a/sql/world/base/weapon_skills.sql b/sql/world/base/weapon_skills.sql
-index b673589..0373895 100644
+index b673589..f2044ea 100644
 --- a/sql/world/base/weapon_skills.sql
 +++ b/sql/world/base/weapon_skills.sql
 @@ -5,7 +5,7 @@ SET @2HSWORDS := 55;
@@ -164,15 +162,7 @@ index b673589..0373895 100644
  
  /* Thrown */
  SET @THROWN := 176;
-@@ -39,7 +41,6 @@ DELETE FROM `playercreateinfo_skills` WHERE `skill` = @THROWN;
- INSERT INTO `playercreateinfo_skills` (`raceMask`, `classMask`, `skill`, `rank`, `comment`) VALUES (0, 8, 176, 0, 'Rogue - Thrown');
- INSERT INTO `playercreateinfo_skills` (`raceMask`, `classMask`, `skill`, `rank`, `comment`) VALUES (128, 1, 176, 0, 'Warrior - Thrown');
- 
--
- /* One-handed maces */
- SET @MACES := 54;
- 
-@@ -49,25 +50,28 @@ INSERT INTO `playercreateinfo_skills` (`raceMask`, `classMask`, `skill`, `rank`,
+@@ -49,25 +51,28 @@ INSERT INTO `playercreateinfo_skills` (`raceMask`, `classMask`, `skill`, `rank`,
  INSERT INTO `playercreateinfo_skills` (`raceMask`, `classMask`, `skill`, `rank`, `comment`) VALUES (0, 16, 54, 0, 'Priest - Maces');
  INSERT INTO `playercreateinfo_skills` (`raceMask`, `classMask`, `skill`, `rank`, `comment`) VALUES (0, 64, 54, 0, 'Shaman - Maces');
  INSERT INTO `playercreateinfo_skills` (`raceMask`, `classMask`, `skill`, `rank`, `comment`) VALUES (1645, 1, 54, 0, 'Warrior - Maces');
