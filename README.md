@@ -40,7 +40,7 @@ Alternatively, you can do it manually through a text editor of your choice by ch
 
 #### Playerbots
 
-This patch fixes the problem of bots failing to recognize worgen as an Alliance race (goblins work correctly without the patch) and allows playerbots to spawn as worgen and goblins. You'll have to run the modified `world_playerbots_rpg_races.sql` found in your Playerbots `data/sql/world` directory for changes to take effect. If you only want to fix worgen faction behavior, use the [playerbots-lite patch](https://github.com/idempotentiation/mod-worgoblin/blob/master/playerbots-lite.patch) (you don't need to run any SQL queries if you use this one).
+This patch fixes the problem of bots failing to recognize worgen as an Alliance race (goblins work correctly without the patch) and allows playerbots to spawn as worgen and goblins. You'll have to run the patched `world_playerbots_rpg_races.sql` file found in `mod-playerbots/data/sql/world` for changes to take effect. If you only want to fix worgen faction behavior, use the [playerbots-lite patch](https://github.com/idempotentiation/mod-worgoblin/blob/master/playerbots-lite.patch) (you don't need to run any SQL queries if you use this one).
 
 To apply the patch, copy [playerbots.patch](https://github.com/idempotentiation/mod-worgoblin/blob/master/playerbots.patch) to the root of your Playerbots directory and run the following commands from there:
 
@@ -48,7 +48,10 @@ To apply the patch, copy [playerbots.patch](https://github.com/idempotentiation/
 git apply --ignore-space-change --ignore-whitespace playerbots.patch
 git add .
 git commit -m "Add worgoblin patch"
+mysql -u acore -pacore acore_world -e "SOURCE data/sql/world/world_playerbots_rpg_races.sql;"
 ```
+
+Don't forget to make sure your acore_world database is initialized before running the query.
 
 #### Individual Progression
 
@@ -62,9 +65,10 @@ To apply the patch, copy [individual-progression.patch](https://github.com/idemp
 git apply --ignore-space-change --ignore-whitespace individual-progression.patch
 git add .
 git commit -m "Add worgoblin patch"
+mysql -u acore -pacore acore_world -e "SOURCE sql/world/base/class_trainers.sqll; SOURCE sql/world/base/starting_skillbars.sql; SOURCE sql/world/base/weapon_skills.sql;"
 ```
 
-Note that you must set `PlayerStart.CustomSpells = 1` in your `worldserver.conf` for the Summon Imp changes to function.
+Note that you must set `PlayerStart.CustomSpells = 1` in your `worldserver.conf` for the Summon Imp changes to function. Don't forget to make sure your acore_world database is initialized before running the queries.
 
 ### 3) Replace the DBC files in your AzerothCore Data directory with the ones provided in [DBFilesClient](https://github.com/idempotentiation/mod-worgoblin/tree/master/data/patch/DBFilesClient)
 
