@@ -807,23 +807,6 @@ index 291d6825..d6443b51 100644
      }
  }
  
-diff --git a/src/RandomPlayerbotFactory.h b/src/RandomPlayerbotFactory.h
-index 94e51537..4f3cccdc 100644
---- a/src/RandomPlayerbotFactory.h
-+++ b/src/RandomPlayerbotFactory.h
-@@ -41,7 +41,11 @@ public:
-         TaurenMale,
-         TaurenFemale,
-         BloodelfMale,
--        BloodelfFemale
-+        BloodelfFemale,
-+		WorgenMale,
-+		WorgenFemale,
-+		GoblinMale,
-+		GoblinFemale
-     };
- 
-     static constexpr NameRaceAndGender CombineRaceAndGender(uint8 gender, uint8 race);
 diff --git a/src/RandomPlayerbotMgr.cpp b/src/RandomPlayerbotMgr.cpp
 index 1b69d7f3..cc3b9a27 100644
 --- a/src/RandomPlayerbotMgr.cpp
