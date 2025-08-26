@@ -26,7 +26,7 @@ If you choose to manually download the repo, make sure that you delete the -mast
 
 As of right now, the hooks for allowing custom races are not present in AzerothCore. Because of this, you'll have to manually apply the change required to your AzerothCore source.
 
-I recommend applying the patch with git, as it is less error-prone and will make future AzerothCore updates easier. You can apply the patch with the following commands:
+You can apply the patch with the following commands:
 
 ```
 git apply --ignore-space-change --ignore-whitespace modules/mod-worgoblin/worgoblin.patch
@@ -36,9 +36,15 @@ git commit -m "Add worgoblin patch"
 
 Alternatively, you can do it manually through a text editor of your choice by changing the lines required where a "-" indicates the original line and a "+" indicates the change necessary. The specific lines can be found after the @@ before each change, where it states the line number. There are a total of seven lines to change and one line to add.
 
-### 2.5) Optional: compatibility patches
+### 3) Replace the DBC files in your AzerothCore Data directory with the ones provided in [DBFilesClient](https://github.com/idempotentiation/mod-worgoblin/tree/master/data/patch/DBFilesClient)
 
-#### Playerbots
+Copy the contents of the DBFilesClient folder (`mod-worgoblin/data/patch/DBFilesClient`) to your AzerothCore `Data/dbc` directory (defined by `DataDir` in `worldserver.conf`). I recommend backing up your dbc folder before overwriting these files.
+
+### 4) Copy the [patch](https://github.com/heyitsbench/mod-worgoblin/tree/master/data/patch) folder (`mod-worgoblin/data/patch`) to your Data folder in your WoW client and rename it to `patch-A.MPQ`
+
+### 4.5) Optional: compatibility patches
+
+#### [Playerbots](https://github.com/liyunfan1223/mod-playerbots)
 
 This patch fixes the problem of bots failing to recognize worgen as an Alliance race (goblins work correctly without the patch) and allows playerbots to spawn as worgen and goblins. You'll have to run the patched `world_playerbots_rpg_races.sql` file found in `mod-playerbots/data/sql/world` for changes to take effect. If you only want to fix worgen faction behavior, use the [playerbots-lite patch](https://github.com/idempotentiation/mod-worgoblin/blob/master/playerbots-lite.patch) (you don't need to run any SQL queries if you use this one).
 
@@ -50,11 +56,11 @@ git add .
 git commit -m "Add worgoblin patch"
 ```
 
-#### Individual Progression
+#### [Individual Progression](https://github.com/ZhengPeiRu21/mod-individual-progression)
 
 The individual progression module modifies starting weapon skills, which has the side effect of causing certain classes for worgen and goblins to be unable to use their starting equipment. Additionally, it removes many spells from trainers and reintroduces the quests that were originally required to learn them. Notably, it removes Summon Imp from warlock trainers. Because there are no warlock quests in Teldrassil, this leaves worgen warlocks without any feasible way of learning how to summon their imp.
 
-This patch fixes the issues with starting weapon skills, as well as teaches all newly created worgen warlocks the Summon Imp spell until a custom quest can be added. After you apply the patch, you must run the patched SQL files on your world database for the changes to take effect. The files changed are `class_trainers.sql`, `starting_skillbars.sql`, and `weapon_skills.sql`, which can all found in `mod-individual-progression/sql/world/base`.
+This patch fixes the issues with starting weapon skills, as well as adds a custom quest for worgen warlocks to learn how to summon their imp. After you apply the patch, you must run the patched SQL files on your world database for the changes to take effect. The files changed are `class_trainers.sql`, `starting_skillbars.sql`, and `weapon_skills.sql`, which can all found in `mod-individual-progression/sql/world/base`. Then, add/overwrite the provided DBC files in both your AzerothCore server's `data/dbc` and your client's `Patch-A.MPQ/DBFilesClient` directories.
 
 To apply the patch, copy [individual-progression.patch](https://github.com/idempotentiation/mod-worgoblin/blob/master/individual-progression.patch) to the root of your individual progression directory and run the following commands from there:
 
@@ -64,17 +70,9 @@ git add .
 git commit -m "Add worgoblin patch"
 ```
 
-Note that you must set `PlayerStart.CustomSpells = 1` in your `worldserver.conf` for the Summon Imp changes to function.
+### 5) Compile and install AzerothCore.
 
-### 3) Replace the DBC files in your AzerothCore Data directory with the ones provided in [DBFilesClient](https://github.com/idempotentiation/mod-worgoblin/tree/master/data/patch/DBFilesClient)
-
-Copy the contents of the DBFilesClient folder (mod-worgoblin/data/patch/DBFilesClient) to your AzerothCore Data/dbc directory (defined by DataDir in worldserver.conf). I recommend backing up your dbc folder before overwriting these files.
-
-### 4) Compile and install AzerothCore.
-
-See AzerothCore's [official documentation](https://www.azerothcore.org/wiki/installing-a-module) for more details about compiling and installing modules.
-
-### 5) Copy the [patch](https://github.com/heyitsbench/mod-worgoblin/tree/master/data/patch) folder (mod-worgoblin/data/patch) to your Data folder in your WoW client and rename it to `patch-A.MPQ`
+See AzerothCore's [official documentation](https://www.azerothcore.org/wiki/installing-a-module) for more details about compiling and installing modules. If you applied one of the compatibility patches after a previous installation, you will have to recompile AzerothCore.
 
 ### 6) Remove signature checks from your WoW executable
 I recommend Windows users to use [this patcher](https://www.wowmodding.net/files/file/283-wow-335-patcher-custom-item-fix/) created by kebabstorm to patch your Wow.exe file (also available from [this](https://github.com/anzz1/WoWPatcher335/releases) GitHub repository). I recommend macOS users to download this [pre-patched .app file](https://github.com/benjymansy123/custom-race-ac-12_6_21/releases/download/sig-check/WoW.app.zip), since no easy patcher exists for macOS.
