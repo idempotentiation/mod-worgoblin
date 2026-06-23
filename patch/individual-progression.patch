@@ -179,7 +179,7 @@ index b673589..f2044ea 100644
  DELETE FROM `playercreateinfo_skills` WHERE `skill` = @2HSWORDS;
  INSERT INTO `playercreateinfo_skills` (`raceMask`, `classMask`, `skill`, `rank`, `comment`) VALUES (0, 32, 55, 0, 'Death Knight - Two-Handed Swords');
 -INSERT INTO `playercreateinfo_skills` (`raceMask`, `classMask`, `skill`, `rank`, `comment`) VALUES (1040, 1, 55, 0, 'Warrior - Two-Handed Swords');
-+INSERT INTO `playercreateinfo_skills` (`raceMask`, `classMask`, `skill`, `rank`, `comment`) VALUES (1040|2048, 1, 55, 0, 'Warrior - Two-Handed Swords');
++INSERT INTO `playercreateinfo_skills` (`raceMask`, `classMask`, `skill`, `rank`, `comment`) VALUES (1040|2048|1, 1, 55, 0, 'Warrior - Two-Handed Swords');
  INSERT INTO `playercreateinfo_skills` (`raceMask`, `classMask`, `skill`, `rank`, `comment`) VALUES (512, 2, 55, 0, 'Paladin - Two-Handed Swords');
  
  /* One-handed swords */
