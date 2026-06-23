@@ -233,7 +233,7 @@ index b673589..f2044ea 100644
  INSERT INTO `playercreateinfo_skills` (`raceMask`, `classMask`, `skill`, `rank`, `comment`) VALUES (0, 32, 44, 0, 'Death Knight - Axes');
 -INSERT INTO `playercreateinfo_skills` (`raceMask`, `classMask`, `skill`, `rank`, `comment`) VALUES (166, 4, 44, 0, 'Hunter - Axes');
 -INSERT INTO `playercreateinfo_skills` (`raceMask`, `classMask`, `skill`, `rank`, `comment`) VALUES (1207, 1, 44, 0, 'Warrior - Axes');
-+INSERT INTO `playercreateinfo_skills` (`raceMask`, `classMask`, `skill`, `rank`, `comment`) VALUES (166|256, 4, 44, 0, 'Hunter - Axes');
++INSERT INTO `playercreateinfo_skills` (`raceMask`, `classMask`, `skill`, `rank`, `comment`) VALUES (166|256|2048, 4, 44, 0, 'Hunter - Axes');
 +INSERT INTO `playercreateinfo_skills` (`raceMask`, `classMask`, `skill`, `rank`, `comment`) VALUES (1207|256, 1, 44, 0, 'Warrior - Axes');
 +INSERT INTO `playercreateinfo_skills` (`raceMask`, `classMask`, `skill`, `rank`, `comment`) VALUES (2048, 8, 44, 0, 'Rogue - Axes');
  
