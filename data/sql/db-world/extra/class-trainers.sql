@@ -35,14 +35,14 @@ INSERT INTO `creature_template_model` (`CreatureID`, `Idx`, `CreatureDisplayID`,
 (62105, 0, 92605, 1, 1); -- Lord Gideon Blackwood
 
 /* Add NPCs to world */
-DELETE FROM `creature` WHERE `guid` IN (6210000, 6210001, 6210002, 6210003, 6210004, 6210005);
-INSERT INTO `creature` (`guid`, `id1`, `id2`, `id3`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, `spawntimesecs`, `wander_distance`, `currentwaypoint`, `curhealth`, `curmana`, `MovementType`, `npcflag`, `unit_flags`, `dynamicflags`, `ScriptName`, `VerifiedBuild`, `CreateObject`, `Comment`) VALUES
-(6210000, 62100, 0, 0, 1, 141, 256, 1, 1, 0, 10440.052, 771.8263, 1322.6658, 2.2232187, 300, 0, 0, 102, 0, 0, 0, 0, 0, '', 0, 0, NULL), -- Thaddius Dalrymple
-(6210001, 62101, 0, 0, 1, 141, 256, 1, 1, 0, 9799.775, 973.43005, 1313.8927, 0.37601513, 300, 0, 0, 102, 0, 0, 0, 0, 0, '', 0, 0, NULL), -- Oswald Dunsmore
-(6210002, 62102, 0, 0, 1, 1657, 1657, 1, 1, 0, 9662.262, 2515.0222, 1331.6708, 2.9128127, 300, 0, 0, 102, 0, 0, 0, 0, 0, '', 0, 0, NULL), -- Leah Ashcroft
-(6210003, 62103, 0, 0, 1, 141, 256, 1, 1, 0, 10531.822, 780.97076, 1329.599, 2.516502, 300, 0, 0, 102, 0, 0, 0, 0, 0, '', 0, 0, NULL), -- Amelia Fearhart
-(6210004, 62104, 0, 0, 1, 141, 256, 1, 1, 0, 9803.713, 977.55255, 1303.5801, 1.8839686, 300, 0, 0, 102, 0, 0, 0, 0, 0, '', 0, 0, NULL), -- Lady Lovelace
-(6210005, 62105, 0, 0, 1, 1657, 1657, 1, 1, 0, 10121.33, 2516.2488, 1289.5824, 2.7164388, 300, 0, 0, 102, 0, 0, 0, 0, 0, '', 0, 0, NULL); -- Lord Gideon Blackwood
+DELETE FROM `creature` WHERE `id` IN (62100, 62101, 62102, 62103, 62104, 62105);
+INSERT INTO `creature` (`guid`, `id`, `map`, `zoneId`, `areaId`, `spawnMask`, `phaseMask`, `equipment_id`, `position_x`, `position_y`, `position_z`, `orientation`, `spawntimesecs`, `wander_distance`, `currentwaypoint`, `curhealth`, `curmana`, `MovementType`, `npcflag`, `unit_flags`, `dynamicflags`, `ScriptName`, `VerifiedBuild`, `CreateObject`, `Comment`) VALUES
+(6210000, 62100, 1, 141, 256, 1, 1, 0, 10440.052, 771.8263, 1322.6658, 2.2232187, 300, 0, 0, 102, 0, 0, 0, 0, 0, '', 0, 0, NULL), -- Thaddius Dalrymple
+(6210001, 62101, 1, 141, 256, 1, 1, 0, 9799.775, 973.43005, 1313.8927, 0.37601513, 300, 0, 0, 102, 0, 0, 0, 0, 0, '', 0, 0, NULL), -- Oswald Dunsmore
+(6210002, 62102, 1, 1657, 1657, 1, 1, 0, 9662.262, 2515.0222, 1331.6708, 2.9128127, 300, 0, 0, 102, 0, 0, 0, 0, 0, '', 0, 0, NULL), -- Leah Ashcroft
+(6210003, 62103, 1, 141, 256, 1, 1, 0, 10531.822, 780.97076, 1329.599, 2.516502, 300, 0, 0, 102, 0, 0, 0, 0, 0, '', 0, 0, NULL), -- Amelia Fearhart
+(6210004, 62104, 1, 141, 256, 1, 1, 0, 9803.713, 977.55255, 1303.5801, 1.8839686, 300, 0, 0, 102, 0, 0, 0, 0, 0, '', 0, 0, NULL), -- Lady Lovelace
+(6210005, 62105, 1, 1657, 1657, 1, 1, 0, 10121.33, 2516.2488, 1289.5824, 2.7164388, 300, 0, 0, 102, 0, 0, 0, 0, 0, '', 0, 0, NULL); -- Lord Gideon Blackwood
 
 DELETE FROM `creature_default_trainer` WHERE `CreatureId` IN (62100, 62101, 62102, 62103, 62104, 62105);
 INSERT INTO `creature_default_trainer` (`CreatureId`, `TrainerId`) VALUES
